@@ -15,12 +15,11 @@
 
   i18n.defaultLocale = "en_US.UTF-8";
 
+  services.desktopManager.gnome.enable = true;
+  services.displayManager.gdm.enable = true;
+  
   services.xserver = {
     enable = true;
-
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
-
     xkb = {
       layout = "us";
       variant = "";
