@@ -22,7 +22,14 @@
   # Nagios monitoring service
   services.nagios = {
     enable = true;
-    objectDefs = [];
+    objectDefs = [
+      {
+        service = [ ];
+        host = [ ];
+        contact = [ ];
+        timeperiod = [ ];
+      }
+    ];
   };
 }
 
