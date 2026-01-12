@@ -1,13 +1,5 @@
 { config, pkgs, ... }:
 
-let
-  smashing = pkgs.bundlerApp {
-    pname = "smashing";
-    gemdir = ./.;
-    exes = [ "smashing" ];
-  };
-in
-
 {
   environment.systemPackages = with pkgs; [
     nagios
@@ -15,7 +7,6 @@ in
     yarn
     ruby
     bundler
-    smashing
   ];
 
   # Web server untuk dashboard
