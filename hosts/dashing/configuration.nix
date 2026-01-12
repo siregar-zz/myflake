@@ -29,6 +29,8 @@
     curl
     htop
     git
+    nodejs
+    yarn
   ];
 
   # Web server untuk dashboard
@@ -42,10 +44,6 @@
   };
 
   # NodeJS untuk aplikasi dashboard
-  environment.systemPackages = with pkgs; [
-    nodejs
-    yarn
-  ];
 
   services.openssh.enable = true;
 
