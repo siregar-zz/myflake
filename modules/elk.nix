@@ -10,7 +10,6 @@
 
   services.elasticsearch = {
     enable = true;
-    package = pkgs.elasticsearch7;
     extraConf = ''
       cluster.name = elk-cluster
       node.name = ${config.networking.hostName}
@@ -22,7 +21,6 @@
 
   services.logstash = {
     enable = true;
-    package = pkgs.logstash7;
     inputConfig = ''
       tcp {
         port => 5000
@@ -46,7 +44,6 @@
 
   services.kibana = {
     enable = true;
-    package = pkgs.kibana7;
     extraConf = {
       server.host = "0.0.0.0";
       server.port = 5601;
