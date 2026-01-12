@@ -1,10 +1,10 @@
 { config, pkgs, ... }:
 
 let
-  smashing = pkgs.bundlerApp {
-    pname = "smashing";
+  rubyEnv = pkgs.bundlerEnv {
+    name = "smashing-env";
+    ruby = pkgs.ruby;
     gemdir = ./.;
-    exes = [ "smashing" ];
   };
 in
 
@@ -15,7 +15,7 @@ in
     yarn
     ruby
     bundler
-    smashing
+    rubyEnv
   ];
 
   # Web server untuk dashboard
@@ -33,5 +33,10 @@ in
     enable = true;
     objectDefs = [];
   };
-}
 
+  # Install smashing gem ke environment
+  environment.shellInit = ''
+    export GEM_HOME=${rubyEnv}/${pkgs.ruby.gemPath}
+    export PATH=${rubyEnv}/bin:$PATH
+  '';
+}
