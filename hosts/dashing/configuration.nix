@@ -8,29 +8,17 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "aardvark";
+  networking.hostName = "dashing";
   networking.networkmanager.enable = true;
 
   time.timeZone = "Asia/Jakarta";
 
   i18n.defaultLocale = "en_US.UTF-8";
 
-  services.desktopManager.gnome.enable = true;
-  services.displayManager.gdm.enable = true;
-  
-  services.xserver = {
-    enable = true;
-    xkb = {
-      layout = "us";
-      variant = "";
-    };
-  };
-
-  users.users.aardvark = {
+  users.users.dashing = {
     isNormalUser = true;
-    description = "aardvark";
+    description = "dashing";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -38,20 +26,28 @@
   environment.systemPackages = with pkgs; [
     vim
     wget
-    alacritty
-    firefox
-    chromium
-    feh
-    networkmanagerapplet
-    xclip
+    curl
+    htop
+    git
+  ];
+
+  # Web server untuk dashboard
+  services.caddy = {
+    enable = true;
+    virtualHosts."localhost:8080" = {
+      extraConfig = ''
+        reverse_proxy localhost:3000
+      '';
+    };
+  };
+
+  # NodeJS untuk aplikasi dashboard
+  environment.systemPackages = with pkgs; [
+    nodejs
+    yarn
   ];
 
   services.openssh.enable = true;
-
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-  };
 
   system.stateVersion = "25.11";
 }

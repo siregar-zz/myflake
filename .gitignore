@@ -1,0 +1,17 @@
+# Nix build outputs
+result
+result-*
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Development
+.direnv/
+
+# System
+*.log
