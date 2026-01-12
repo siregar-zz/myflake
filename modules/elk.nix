@@ -4,7 +4,6 @@
   environment.systemPackages = with pkgs; [
     elasticsearch
     logstash
-    kibana
   ];
 
   services.elasticsearch = {
