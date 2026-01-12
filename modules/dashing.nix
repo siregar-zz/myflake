@@ -18,18 +18,5 @@
       '';
     };
   };
-
-  # Nagios monitoring service
-  services.nagios = {
-    enable = true;
-    objectDefs = [
-      {
-        service = [ ];
-        host = [ ];
-        contact = [ ];
-        timeperiod = [ ];
-      }
-    ];
-  };
 }
 
